@@ -18,7 +18,7 @@ btn.onclick = (e) => {
   const r = btn.getBoundingClientRect();
   root.style.setProperty("--x", (e.clientX || r.left + r.width / 2) + "px");
   root.style.setProperty("--y", (e.clientY || r.top + r.height / 2) + "px");
-  document.startViewTransition(apply);
+  document.startViewTransition(() => { root.classList.add("ink"); apply(); }).finished.finally(() => root.classList.remove("ink"));
 };
 
 const views = [...document.querySelectorAll(".view")];
